@@ -21,7 +21,9 @@ var connection = mysql.createConnection({
 
   connection.connect(function(err) {
     if (err) throw err;
+    console.log("connected!")
     runPrompts();
+    connection.end(); 
   });
 
   function runPrompts() {
@@ -34,31 +36,49 @@ var connection = mysql.createConnection({
               "Add role",
               "Add employee",
               "View departments",
-              "View role",
+              "View roles",
               "View employees",
-              "Update employee roles",
-              "exit"
+              "Update employee role",
+              "Exit",
           ]
       })
       .then(function(answer) {
 
         switch(answer.action){
             case "Add department":
-                addDepartment();
+                addDepartment()
                 break;
             
             case "Add employee":
-                addEmployee();
+                addEmployee()
                 break;
 
             case "Add role":
-                addRole();
+                addRole()
                 break;
             
-            case "View department":
-                viewDepartments();
+            case "View departments":
+                viewDepartments()
                 break;
 
+            case "View roles":
+                viewRoles()
+                break;
+
+            case "View employees":
+                viewEmployees()
+                break;
+
+            case "Update employee role":
+                updateEmployeeRole()
+                break;
+
+            case "Exit":
+                break; 
+                
+
+            default:
+                break;
         }
       })
   }
@@ -73,38 +93,129 @@ var connection = mysql.createConnection({
         
         connection.query("INSERT INTO department SET ?", res.name, function(err, data) {
             if (err) throw (err);
-            
+
             console.table("Department Added!");
             runPrompts();
         })
     })
 }
 
+function addEmployee(){
+    inquirer.prompt([
+        {
+            message: "Enter the first name of the employee you're adding",
+            type: "input",
+            name: "first_name",
+        },
+        {
+            message: "Enter the last name of the employee",
+            type: "input",
+            name: "last_name",
 
-function viewDepartments()
-  {
-    connection.query("SELECT * FROM department", function (err, data) {
-        cTable.table(data);
+        },
+        {
+            message: "Enter the employee's role",
+            type: "input",
+            name: "role",
+        },
+        {
+            message: "Enter the manager's id if there is one",
+            type: "number",
+            name: "manager_ID",
+        }
+    ]).then(function(response){
+        connection.query("INSERT into employee (first_name, last_name, role, manager_ID) values (?, ?, ?, ?)" [response.first_name, response.last_name, response.role, response.manager_ID],
+        function (err, data) {
+            console.table(data)
+            runPrompts();
+        })
+       
+    })
+}
+function addRole() {
+    inquirer.prompt([
+        {
+            message: "Enter the title of the role you're adding",
+            type: "input",
+            name: "title",
+        },
+        {
+            message: "Enter the salary of the role",
+            type: "number",
+            name: "salary",
+        },
+        {
+            message: "Enter the department ID of the role",
+            type: "number",
+            name: "dept_ID",
+        }
+    ]).then(function (response) {
+        connection.query("INSERT INTO role (title, salary, dept_ID) values (?, ?, ?)", [response.title, response.salary, response.dept_ID], function (err, data) {
+            console.table(data);
+        })
         runPrompts();
     })
 }
 
-/*function addRole() {
-    inquirer.prompt([
-        {
-            type: "input",
-            name: "name",
-            message: "Enter role you're adding"
-        }]).then(function(response) {
 
-            connection.query("INSERT INTO role SET ?", response.name, function(err, data) {
-                if (err) throw (err);
-                console.table("Role added!");
-                runPrompts();   
 
-            })
-        })
+function viewDepartments()
+  {
+    connection.query("SELECT * FROM department", function (err, data) {
+       console.table(data);
+       runPrompts();
+      
+    })
+
+
 }
 
-*/
+function viewRoles()
+  {
+    connection.query("SELECT * FROM role", function (err, data) {
+       console.table(data);
+       runPrompts();
+
+    })
+
+}
+
+function viewEmployees()
+  {
+    connection.query("SELECT * FROM employee", function (err, data) {
+       console.table(data);
+
+       runPrompts();
+
+    })
+
+}
+
+function updateEmployeeRole()
+{
+    inquirer.prompt([
+
+        {
+            message: "Enter the first name of the employee you're updating",
+            type: "input",
+            name: "first_name",
+        },
+        {
+            message: "Enter the new role ID for this employee",
+            type: "number",
+            name: "role_ID",
+
+        }
+    ]).then(function(response) {
+
+        connection.query("UPDATE employee SET role_ID = ? WHERE first_name = ?", [response.role_ID, response.first_name], function (err, data){
+            console.table(data);
+            console.log("Updated employee role!")
+            runPrompts();
+        })
+    })
+    
+}
+
+
 
