@@ -32,7 +32,7 @@ var connection = mysql.createConnection({
           choices: [
               "Add department", 
               "Add role",
-              "Add employees",
+              "Add employee",
               "View departments",
               "View role",
               "View employees",
@@ -46,9 +46,19 @@ var connection = mysql.createConnection({
             case "Add department":
                 addDepartment();
                 break;
+            
+            case "Add employee":
+                addEmployee();
+                break;
+
+            case "Add role":
+                addRole();
+                break;
+            
             case "View department":
                 viewDepartments();
                 break;
+
         }
       })
   }
@@ -59,9 +69,9 @@ var connection = mysql.createConnection({
         type: "input",
         name: "name",
         message: "Enter the name of the department you're adding"
-    } ]).then(function(response) {
+    } ]).then(function(res) {
         
-        connection.query("INSERT INTO department SET ?", response.name, function(err, data) {
+        connection.query("INSERT INTO department SET ?", res.name, function(err, data) {
             if (err) throw (err);
             
             console.table("Department Added!");
@@ -71,14 +81,15 @@ var connection = mysql.createConnection({
 }
 
 
-  function viewDepartments()
+function viewDepartments()
   {
     connection.query("SELECT * FROM department", function (err, data) {
-        console.table(data);
+        cTable.table(data);
+        runPrompts();
     })
 }
 
-function addRole() {
+/*function addRole() {
     inquirer.prompt([
         {
             type: "input",
@@ -93,5 +104,7 @@ function addRole() {
 
             })
         })
-    ])
 }
+
+*/
+
