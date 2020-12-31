@@ -23,7 +23,7 @@ var connection = mysql.createConnection({
     if (err) throw err;
     console.log("connected!")
     runPrompts();
-    connection.end(); 
+  //  connection.end(); 
   });
 
   function runPrompts() {
@@ -74,6 +74,7 @@ var connection = mysql.createConnection({
                 break;
 
             case "Exit":
+                connection.end()
                 break; 
                 
 
@@ -86,15 +87,15 @@ var connection = mysql.createConnection({
   function addDepartment() {
     inquirer.prompt([
         {
+        message: "Enter the name of the department you're adding",
         type: "input",
         name: "name",
-        message: "Enter the name of the department you're adding"
-    } ]).then(function(res) {
+        }
+     ]).then(function(response) {
         
-        connection.query("INSERT INTO department SET ?", res.name, function(err, data) {
+        connection.query("INSERT INTO department (name) values (?)", response.name, function(err, data) {
             if (err) throw (err);
 
-            console.table("Department Added!");
             runPrompts();
         })
     })
@@ -126,7 +127,7 @@ function addEmployee(){
     ]).then(function(response){
         connection.query("INSERT into employee (first_name, last_name, role, manager_ID) values (?, ?, ?, ?)" [response.first_name, response.last_name, response.role, response.manager_ID],
         function (err, data) {
-            console.table(data)
+        //    console.table(data)
             runPrompts();
         })
        
@@ -150,8 +151,8 @@ function addRole() {
             name: "dept_ID",
         }
     ]).then(function (response) {
-        connection.query("INSERT INTO role (title, salary, dept_ID) values (?, ?, ?)", [response.title, response.salary, response.dept_ID], function (err, data) {
-            console.table(data);
+        connection.query("INSERT INTO role (title, salary, department_id) values (?, ?, ?)", [response.title, response.salary, response.dept_ID], function (err, data) {
+         //   console.table(data);
         })
         runPrompts();
     })
@@ -184,7 +185,6 @@ function viewEmployees()
   {
     connection.query("SELECT * FROM employee", function (err, data) {
        console.table(data);
-
        runPrompts();
 
     })
