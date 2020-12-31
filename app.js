@@ -39,6 +39,7 @@ var connection = mysql.createConnection({
               "View roles",
               "View employees",
               "Update employee role",
+              "Update employee's manager ID",
               "Exit",
           ]
       })
@@ -71,6 +72,10 @@ var connection = mysql.createConnection({
 
             case "Update employee role":
                 updateEmployeeRole()
+                break;
+
+            case "Update employee's manager ID":
+                updateEmployeeManager()
                 break;
 
             case "Exit":
@@ -215,6 +220,29 @@ function updateEmployeeRole()
         })
     })
     
+}
+
+function updateEmployeeManager()
+{
+    inquirer.prompt([
+        {
+            message: "Enter first name of the employee you are updating",
+            type: "input",
+            name: "first_name",
+
+        },
+        {
+            message: "Enter the manager ID number you would like to update to",
+            type: "number",
+            name: "manager_ID",
+        }
+    ]).then(function(response) {
+
+        connection.query("UPDATE employee SET manager_id = ? WHERE first_name = ?", [response.manager_ID, response.first_name], function (err, data) {
+            console.log("Employee's manager updated!")
+            runPrompts();
+        })
+    })
 }
 
 
