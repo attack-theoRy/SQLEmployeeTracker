@@ -38,6 +38,7 @@ var connection = mysql.createConnection({
               "View departments",
               "View roles",
               "View employees",
+              "View employees by manager",
               "Update employee role",
               "Update employee's manager ID",
               "Exit",
@@ -76,6 +77,10 @@ var connection = mysql.createConnection({
 
             case "Update employee's manager ID":
                 updateEmployeeManager()
+                break;
+   
+            case "View employees by manager":
+                viewEmployeesByManager()
                 break;
 
             case "Exit":
@@ -241,6 +246,23 @@ function updateEmployeeManager()
         connection.query("UPDATE employee SET manager_id = ? WHERE first_name = ?", [response.manager_ID, response.first_name], function (err, data) {
             console.log("Employee's manager updated!")
             runPrompts();
+        })
+    })
+}
+
+function viewEmployeesByManager()
+{
+    inquirer.prompt([
+        {
+            message: "Enter the manager ID to view employee's with that manager",
+            type: "number",
+            name: "manager_ID",
+        }
+    ]).then(function(response) {
+        
+        connection.query("SELECT * FROM employee WHERE manager_id = ?", [response.manager_ID], function (err, data) {
+            console.table(data)
+            runPrompts()
         })
     })
 }
