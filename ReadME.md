@@ -10,7 +10,7 @@ GitHub Repo: [Template Repo](https://github.com/attack-theoRy/SQLEmployeeTracker
 
 Portfolio: [Portfolio](https://attack-theory.github.io/Portfolio/)
 
-Walkthrough Video : [Walkthrough Video](https://drive.google.com/file/d/1gCgY5ke2qu8ndhm0v2H2EVcgeaNrkAPL/view?usp=sharing)
+Walkthrough Video : [Walkthrough Video](https://drive.google.com/file/d/1DPNKVJnTmDcvn6jWdAmVY70_ldeVOXNN/view?usp=sharing)
 
 
 
