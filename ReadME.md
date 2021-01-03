@@ -6,7 +6,7 @@ by Pirooz Wallace
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 
-GitHub Repo: [Template Repo](https://github.com/attack-theoRy/TeamTemplateEngine)
+GitHub Repo: [Template Repo](https://github.com/attack-theoRy/SQLEmployeeTracker)
 
 Portfolio: [Portfolio](https://attack-theory.github.io/Portfolio/)
 
@@ -24,19 +24,18 @@ Walkthrough Video : [Walkthrough Video](https://drive.google.com/file/d/1gCgY5ke
 ## Tech
 * Node.js
 * Inquirer Package
-* Jest
-* BootStrap CSS
-* Class Inheritance
+* Console.table
+* MySQL
+
 
 ## Description
 
-This app uses Node.js and the command line / terminal to create a team roster based on user input. The app asks a series of questions about the manager and then allows you to add as many interns and/or engineers as you want. Each team member has their own set of unique questions as seen in the screenshot below:   
+This app uses Node.js and the command line / terminal to create to manage a database of   
 
 ![MainSample](MainSample.PNG)
 
-There is some error checking in the questions, for example the email has to be in the proper format and you cannot have any duplicate IDs. After you are done adding team members, you can specify that you are done in the prompts and it will generate a team roster for you using the custom template I created like below:
 
-![TeamRoster](/Assets/roster.PNG)
+
 
 
 
