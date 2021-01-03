@@ -1,7 +1,5 @@
 module.exports = {
-	// === ╔════════════════╗ ===
-	// === ║ INITIAL PROMPT ║ ===
-	// === ╚════════════════╝ ===
+
 
 	firstPrompt: {
 		type: "list",

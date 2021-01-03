@@ -17,15 +17,12 @@ console.log(`  _   _   _   _   _   _   _   _     _   _   _   _   _   _   _
 \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/ \_/ 
 
 `);
-viewEmployee()
 // launch app
 firstPrompt();
 
 
 /* === || INITIAL PROMPT || === */
 function firstPrompt() {
-
-
 	// Main Menu
 	inquirer.prompt(prompt.firstPrompt).then(function ({ task }) {
 		switch (task) {
@@ -81,7 +78,7 @@ function firstPrompt() {
 
 /* === || VIEW EMPLOYEES || === */
 function viewEmployee() {
-	console.log("Employee Rota:\n");
+	console.log("Employees :\n");
 
 	var query = `SELECT e.id, e.first_name, e.last_name, r.title, d.name AS department, r.salary, CONCAT(m.first_name, ' ', m.last_name) AS manager
   FROM employee e
@@ -104,7 +101,7 @@ function viewEmployee() {
 
 /* === || VIEW EMPLOYEE BY MANAGER || === */
 function viewEmployeeByManager() {
-	console.log("Manager Rota:\n");
+	console.log("Managers :\n");
 
 	var query = `SELECT e.manager_id, CONCAT(m.first_name, ' ', m.last_name) AS manager FROM employee e LEFT JOIN role r
 	ON e.role_id = r.id

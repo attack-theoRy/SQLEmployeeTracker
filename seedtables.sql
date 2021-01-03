@@ -65,7 +65,23 @@ INSERT INTO employee ( first_name, last_name, role_id, manager_id)
 VALUES ("Ace", "Deuce", 2, NULL);
 
 INSERT INTO employee ( first_name, last_name, role_id, manager_id)
-VALUES ("Carebear", "Love", 1, NULL);
+VALUES ("Carebear", "Love", 1, );
+
+INSERT INTO employee ( first_name, last_name, role_id, manager_id)
+VALUES ("Cyber", "Shadow", 3, NULL);
+
+INSERT INTO employee ( first_name, last_name, role_id, manager_id)
+VALUES ("John", "Smith", 4, NULL);
+
+INSERT INTO employee ( first_name, last_name, role_id, manager_id)
+VALUES ("Osiris", "Vanadue", 5, NULL);
+
+
+INSERT INTO employee ( first_name, last_name, role_id, manager_id)
+VALUES ("Ace", "Deuce", 2, NULL);
+
+INSERT INTO employee ( first_name, last_name, role_id, manager_id)
+VALUES ("Carebear", "Love", 1, );
 
 INSERT INTO employee ( first_name, last_name, role_id, manager_id)
 VALUES ("Cyber", "Shadow", 3, NULL);
