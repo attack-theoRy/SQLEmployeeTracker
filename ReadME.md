@@ -25,34 +25,39 @@ Walkthrough Video : [Walkthrough Video](https://drive.google.com/file/d/1gCgY5ke
 * Node.js
 * Inquirer Package
 * Console.table
-* MySQL
+* MySQL (Workbench)
 
 
 ## Description
 
-This app uses Node.js and the command line / terminal to create to manage a database of   
+This app uses Node.js, MySQL and the command line / terminal to manage a database of employees. There are three tables: an employee table, a department table and a role table and they create the "company_db" (company database). 
 
 ![MainSample](MainSample.PNG)
 
+There are a bunch of commands you can use to manipulate the database:
+View Employees, Departments, Roles
+View Employees by Manager or Department
+Create (Add) Employee, Roles, Departments
+Update Employee Roles, Manager
+Delete (Remove) Employee, Department, Role
 
-
-
-
+App uses console.table to display the tables and inquirer for the prompts
 
 
 ## Installation
 
 To use properly you need to install Node.js and in the terminal you have to use the command 
-``` npm init ```
+``` npm init -u ```
 and then also
 ``` npm install inquirer ```  to initialize and then install the correct dependencies, in this
 case, inquirer.
 
-``` npm install jest ``` to install jest if you would like to run the tests to ensure the constructors and functions work properly
+``` npm install MySQL  ``` to install MySQL
 
-Type ``` npm run test ``` in the test directory to run the tests like the screenshot below 
+The databases were seeded separately using MySQL Workbench with the 'seedtables.sql' file.
 
-![Tests](/Assets/tests.PNG)
+Type ``` npm install console.table --save ``` to install the console.table dependency used to show the database
+
 
 And then finally to start the application you type ``` node app.js ``` in the terminal.
 
