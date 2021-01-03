@@ -6,7 +6,7 @@ by Pirooz Wallace
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](#license)
 
-GitHub Repo: [Template Repo](https://github.com/attack-theoRy/SQLEmployeeTracker)
+GitHub Repo: [Employee Tracker Repo](https://github.com/attack-theoRy/SQLEmployeeTracker)
 
 Portfolio: [Portfolio](https://attack-theory.github.io/Portfolio/)
 
